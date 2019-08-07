@@ -21,19 +21,18 @@ public class TemperatureController {
 
 	@Autowired
 	TemperatureService temperatureService;
-	
-	@RequestMapping(value=MappingConstants.TEMPEARTURE_REQUEST, method=RequestMethod.GET)
+
+	@RequestMapping(value = MappingConstants.TEMPEARTURE_REQUEST, method = RequestMethod.GET)
 	@ResponseBody
-	public Temperature getTemperature(@PathVariable("unit") String unit , @PathVariable("city") String city){
+	public Temperature getTemperature(@PathVariable("unit") String unit, @PathVariable("city") String city) {
 		if (StringUtils.equals(unit, "C")) {
-			LOGGER.info("feching service for temperature in Celcius");
+			LOGGER.info("fetching service for temperature in Celcius");
 			return temperatureService.getCurrentTemperatureinCelcius(city);
-		} else if(StringUtils.equals(unit, "F")){
-			LOGGER.info("feching service for temperature in Farenhiet");
+		} else if (StringUtils.equals(unit, "F")) {
+			LOGGER.info("fetching service for temperature in Farenhiet");
 			return temperatureService.getCurrentTemperatureinFarenhiet(city);
 		}
 		return null;
 	}
-	
-	
+
 }

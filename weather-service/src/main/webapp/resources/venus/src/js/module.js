@@ -50,3 +50,27 @@ $(".button.button-primary.button-wide-mobile.farenhiet").click(
 			$(".hero-cta.error-msg").css("display", "none");
 
 		});
+
+
+$(".button.button-primary.button-wide-mobile.prec-pred").click(
+		function() {
+			var city = $(".button.button-wide-mobile.textbox").val();
+			var resp = $.parseJSON($.ajax(
+					'http://localhost:7000/weather/precipitation/'
+							+ city, {
+						dataType : 'json',
+						timeout : 500,
+						async : false,
+						success : function(data, status, xhr) {
+						},
+						error : function(jqXhr, textStatus, errorMessage) {
+							$(".hero-cta.error-msg").css("display", "block");
+							$(".data").css("display", "none");
+							$(".button.button-primary.button-wide-mobile.error-msg").text(errorMessage);
+						}
+					}).responseText);
+			$(".hero-cta.prec-pred.data").css("display", "block");
+			$(".button.button-primary.button-wide-mobile.prec-pred.data").text("Today's weather: " + resp.precpChance);
+			$(".hero-cta.error-msg").css("display", "none");
+
+		});
